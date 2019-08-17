@@ -1,7 +1,7 @@
 #include "Archivo.h"
 
 Archivo::Archivo() {
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 300; i++) {
 		instrucciones[i] = "";
 	}
 	contadorInstrucciones = 0;
@@ -24,7 +24,7 @@ bool Archivo::LeerArchivo(string archivo) {
 }
 
 void Archivo::ImprimirArchivo() {
-	for (int i = 0; i < contadorInstrucciones; i++) {
-		cout << instrucciones[i] << endl;
+	for (int i = 0; i < contadorInstrucciones; i = i+3) {
+			cout << instrucciones[i] << " " << instrucciones[i + 1] << " " << instrucciones[i + 2] << endl;
 	}
 }

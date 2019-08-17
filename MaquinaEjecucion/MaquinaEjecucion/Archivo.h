@@ -6,7 +6,7 @@ using namespace std;
 class Archivo
 {
 public:
-	string instrucciones[100];
+	string instrucciones[300];
 	int contadorInstrucciones;
 	ifstream infile;
 	Archivo();
