@@ -152,10 +152,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archivo.cpp" />
+    <ClCompile Include="Ejecucion.cpp" />
     <ClCompile Include="MaquinaEjecucion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archivo.h" />
+    <ClInclude Include="Ejecucion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
