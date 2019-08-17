@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 class Archivo
@@ -8,9 +9,11 @@ class Archivo
 public:
 	string instrucciones[300];
 	int contadorInstrucciones;
+	int siguienteInstruccion;
 	ifstream infile;
 	Archivo();
-	bool LeerArchivo(string archivo);
+	void LeerArchivo(string archivo);
 	void ImprimirArchivo();
+	void ImprimirInstruccion(int indice);
 };
 

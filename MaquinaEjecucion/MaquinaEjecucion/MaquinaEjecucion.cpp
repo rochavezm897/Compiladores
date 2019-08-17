@@ -1,13 +1,14 @@
 #include <iostream>
 #include "Archivo.h"
+#include "Ejecucion.h"
 using namespace std;
 
 int main()
 {
+	Ejecucion ejecucion;
 	//Leer archivo
 	//Archivo debe estar en la misma direccion que MaquinaEjecucion.cpp
-	Archivo archivo;
-	archivo.LeerArchivo("prueba.txt");
+	ejecucion.archivo.LeerArchivo("prueba.txt");
 
 	// variable menu
 	int opcion;
@@ -16,26 +17,46 @@ int main()
 		cout << "2.- Ver registros" << endl;
 		cout << "3.- Ejecutar siguiente linea" << endl;
 		cout << "4.- Ejecutar completo" << endl;
-		cout << "5.- Salir" << endl;
+		cout << "5.- Imprimir Instruccion" << endl;
+		cout << "6.- Trace" << endl;
+		cout << "7.- Reiniciar" << endl;
+		cout << "8.- Salir" << endl;
 		cout << "Ingrese opcion: ";
 		cin >> opcion;
 		switch (opcion) {
-		case 1: {
-			archivo.ImprimirArchivo();
-			break;
+			case 1: {
+				ejecucion.archivo.ImprimirArchivo();
+				break;
+			}
+			case 2: {
+				ejecucion.ImprimirRegistros();
+				break;
+			}
+			case 3: {
+				ejecucion.EjecutarInstruccion();
+				break;
+			}
+			case 4: {
+				ejecucion.EjecutarCompleto();
+				break;
+			}
+			case 5: {
+				ejecucion.archivo.ImprimirInstruccion(ejecucion.lineaEjecutando);
+				break;
+			}
+			case 6: {
+				if (ejecucion.trace) {
+					ejecucion.trace = false;
+				}
+				else {
+					ejecucion.trace = true;
+				}
+				break;
+			}
+			case 7: {
+				ejecucion.Reset();
+				break;
+			}
 		}
-		case 2: {
-			cout << "caso 2" << endl;
-			break;
-		}
-		case 3: {
-			cout << "caso 3" << endl;
-			break;
-		}
-		case 4: {
-			cout << "caso 4" << endl;
-			break;
-		}
-		}
-	} while (opcion != 5);
+	} while (opcion != 8);
 }
