@@ -16,9 +16,14 @@ void Archivo::ImprimirArchivo() {
 
 void Archivo::LeerArchivo(string archivo) {
 	infile.open(archivo);
+	string temporal;
 	while (infile) 
 	{
-		getline(infile, instrucciones[contadorInstrucciones]);
+		getline(infile, temporal);
+		if (convertToASCII(temporal)<0)
+		{
+			getline(infile, instrucciones[contadorInstrucciones]);
+		}
 		contadorInstrucciones++;
 	}
 	infile.close();
@@ -26,4 +31,15 @@ void Archivo::LeerArchivo(string archivo) {
 
 void Archivo::ImprimirInstruccion(int indice) {
 	cout << instrucciones[indice] << endl;
+}
+
+int Archivo::convertToASCII(string letter)
+{
+	int tmp=0;
+	for (int i = 0; i < letter.length(); i++)
+	{
+		char x = letter.at(i);
+		tmp += int(x);
+	}
+	return tmp;
 }

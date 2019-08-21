@@ -26,6 +26,8 @@ int main()
 		switch (opcion) {
 			case 1: {
 				ejecucion.archivo.ImprimirArchivo();
+				//cout << "Instruccion 1: " << ejecucion.archivo.instrucciones[0]<<endl;
+				//cout << "Instruccion 2: " << ejecucion.archivo.instrucciones[1] << endl;
 				break;
 			}
 			case 2: {

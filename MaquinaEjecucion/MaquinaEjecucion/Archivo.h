@@ -15,5 +15,6 @@ public:
 	void LeerArchivo(string archivo);
 	void ImprimirArchivo();
 	void ImprimirInstruccion(int indice);
+	int convertToASCII(string temp);
 };
 
