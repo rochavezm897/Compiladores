@@ -8,6 +8,7 @@ class Archivo
 {
 public:
 	string instrucciones[300];
+	char rop;
 	int contadorInstrucciones;
 	int siguienteInstruccion;
 	ifstream infile;

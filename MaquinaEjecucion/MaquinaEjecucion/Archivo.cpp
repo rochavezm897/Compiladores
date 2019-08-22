@@ -16,16 +16,19 @@ void Archivo::ImprimirArchivo() {
 
 void Archivo::LeerArchivo(string archivo) {
 	infile.open(archivo);
-	string temporal;
+	//string temporal="";
 	while (infile) 
 	{
-		getline(infile, temporal);
-		if (convertToASCII(temporal)<0)
-		{
+		//getline(infile, temporal);
+		//if (convertToASCII(temporal)!=1)
+		//{
+			//infile >> instrucciones[contadorInstrucciones];
 			getline(infile, instrucciones[contadorInstrucciones]);
-		}
-		contadorInstrucciones++;
+			
+			contadorInstrucciones++;
+		//}
 	}
+	rop = instrucciones[0].at(0);
 	infile.close();
 }
 
@@ -40,6 +43,11 @@ int Archivo::convertToASCII(string letter)
 	{
 		char x = letter.at(i);
 		tmp += int(x);
+		if (tmp==32)
+		{
+			break;
+			tmp = 1;
+		}
 	}
 	return tmp;
 }
