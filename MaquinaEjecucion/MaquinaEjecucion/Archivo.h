@@ -8,7 +8,8 @@ class Archivo
 {
 public:
 	string instrucciones[300];
-	char rop;
+	char rop = 0;
+	string matriz[300][5];
 	int contadorInstrucciones;
 	int siguienteInstruccion;
 	ifstream infile;
@@ -16,6 +17,6 @@ public:
 	void LeerArchivo(string archivo);
 	void ImprimirArchivo();
 	void ImprimirInstruccion(int indice);
-	int convertToASCII(string temp);
+	void guardarmatriz();
 };
 
