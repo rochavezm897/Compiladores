@@ -6,32 +6,31 @@ Ejecucion::Ejecucion() {
 }
 void Ejecucion::EjecutarInstruccion() {
 	if (trace) {
-		archivo.ImprimirInstruccion(lineaEjecutando);
+		archivo.ImprimirInstruccion(reg[7]);
 	}
-	switch (archivo.matrizCodificada[lineaEjecutando].codigo) {
+	switch (archivo.matrizCodificada[reg[7]].codigo) {
 	case 0: {
 		system("pause");
 		break;
 	}
 	case 1: {
 		cout << "Ingresar valor: ";
-		cin >> registros[archivo.matrizCodificada[lineaEjecutando].p1];
+		cin >> reg[archivo.matrizCodificada[reg[7]].p1];
 		cout << "Guardado";
 	}
 	}
-	lineaEjecutando++;
+	reg[7]++;
 }
 
 void Ejecucion::Reset() {
-	lineaEjecutando = 0;
-	for (int i = 0; i < 8; i++) {
-		registros[i] = 0;
+	for (int i = 0; i < NUMERO_REGISTROS; i++) {
+		reg[i] = 0;
 	}
 }
 
 void  Ejecucion::ImprimirRegistros() {
-	for (int i = 0; i < 8; i++) {
-		cout << "Registro" << i <<": " << registros[i] << endl;
+	for (int i = 0; i < NUMERO_REGISTROS; i++) {
+		cout << "Registro" << i <<": " << reg[i] << endl;
 	}
 }
 

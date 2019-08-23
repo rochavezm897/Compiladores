@@ -1,7 +1,7 @@
 #include "Archivo.h"
 
 Archivo::Archivo() {
-	for (int i = 0; i < 300; i++) {
+	for (int i = 0; i < INSTRUCCIONES_MAXIMO; i++) {
 		instrucciones[i] = "";
 	}
 	contadorInstrucciones = 0;
@@ -66,7 +66,7 @@ void Archivo::guardarmatriz()
 	string tmp2;
 	char x;
 	bool band;
-	for (int i = 0; i < 300; i++)
+	for (int i = 0; i < INSTRUCCIONES_MAXIMO; i++)
 	{
 		contador = 0;
 		contador1 = 0;

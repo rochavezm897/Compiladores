@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
+const int INSTRUCCIONES_MAXIMO = 100;
 
 struct MatrizCodigo
 {
@@ -18,11 +19,11 @@ class Archivo
 public:
 	string instrucciones[300];
 	char rop = 0;
-	string matriz[300][5];
+	string matriz[INSTRUCCIONES_MAXIMO][5];
 	int contadorInstrucciones;
 	int siguienteInstruccion;
 	ifstream infile;
-	MatrizCodigo matrizCodificada[300];
+	MatrizCodigo matrizCodificada[INSTRUCCIONES_MAXIMO];
 	Archivo();
 	void LeerArchivo(string archivo);
 	void ImprimirArchivo();
