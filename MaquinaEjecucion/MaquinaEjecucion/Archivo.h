@@ -18,5 +18,6 @@ public:
 	void ImprimirArchivo();
 	void ImprimirInstruccion(int indice);
 	void guardarmatriz();
+	void ImprimirMatriz();
 };
 
