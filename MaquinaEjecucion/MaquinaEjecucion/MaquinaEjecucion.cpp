@@ -21,7 +21,8 @@ int main()
 		cout << "5.- Imprimir Instruccion" << endl;
 		cout << "6.- Trace" << endl;
 		cout << "7.- Reiniciar" << endl;
-		cout << "8.- Salir" << endl;
+		cout << "8.- Imprimir Matriz" << endl;
+		cout << "9.- Salir" << endl;
 		cout << "Ingrese opcion: ";
 		cin >> opcion;
 		switch (opcion) {
@@ -61,6 +62,10 @@ int main()
 				ejecucion.Reset();
 				break;
 			}
+			case 8: {
+				ejecucion.archivo.ImprimirMatriz();
+				break;
+			}
 		}
-	} while (opcion != 8);
+	} while (opcion != 9);
 }

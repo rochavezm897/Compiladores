@@ -130,3 +130,12 @@ void Archivo::guardarmatriz()
 
 
 }
+
+void Archivo::ImprimirMatriz() {
+	for (int i = 0; i < contadorInstrucciones; i++) {
+		for (int j = 0; j < 5; j++) {
+			cout << " " << matriz[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
