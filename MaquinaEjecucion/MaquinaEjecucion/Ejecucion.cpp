@@ -8,6 +8,17 @@ void Ejecucion::EjecutarInstruccion() {
 	if (trace) {
 		archivo.ImprimirInstruccion(lineaEjecutando);
 	}
+	switch (archivo.matrizCodificada[lineaEjecutando].codigo) {
+	case 0: {
+		system("pause");
+		break;
+	}
+	case 1: {
+		cout << "Ingresar valor: ";
+		cin >> registros[archivo.matrizCodificada[lineaEjecutando].p1];
+		cout << "Guardado";
+	}
+	}
 	lineaEjecutando++;
 }
 

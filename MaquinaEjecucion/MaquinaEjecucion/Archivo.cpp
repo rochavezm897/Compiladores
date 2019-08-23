@@ -134,14 +134,83 @@ void Archivo::guardarmatriz()
 		matriz[i][1] = tmp;
 	}
 
-
+	CodificarMatriz();
 }
 
 void Archivo::ImprimirMatriz() {
 	for (int i = 0; i < contadorInstrucciones; i++) {
-		for (int j = 0; j < 5; j++) {
-			cout << " " << matriz[i][j] << " ";
-		}
-		cout << endl;
+		cout << matrizCodificada[i].linea << " " <<
+			matrizCodificada[i].instruccion << " " <<
+			matrizCodificada[i].codigo << " " <<
+			matrizCodificada[i].p1 << " " <<
+			matrizCodificada[i].p2 << " " <<
+			matrizCodificada[i].p3 << " " <<
+			endl;
+	}
+}
+
+void Archivo::CodificarMatriz() {
+	
+	for (int i = 0; i < contadorInstrucciones; i++) {
+		matrizCodificada[i].linea = stoi(matriz[i][0]);
+		matrizCodificada[i].instruccion = matriz[i][1];
+		matrizCodificada[i].codigo = ObtenerCodigo(i);
+		matrizCodificada[i].p1 = stoi(matriz[i][2]);
+		matrizCodificada[i].p2 = stoi(matriz[i][3]);
+		matrizCodificada[i].p3 = stoi(matriz[i][4]);
+	}
+}
+
+int Archivo::ObtenerCodigo(int indice) {
+	if (!matriz[indice][1].compare("HALT")) {
+		return 0;
+	}
+	else if(!matriz[indice][1].compare("IN")){
+		return 1;
+	} 
+	else if (!matriz[indice][1].compare("OUT")) {
+		return 2;
+	}
+	else if (!matriz[indice][1].compare("ADD")) {
+		return 3;
+	}
+	else if (!matriz[indice][1].compare("SUB")) {
+		return 4;
+	}
+	else if (!matriz[indice][1].compare("MUL")) {
+		return 5;
+	}
+	else if (!matriz[indice][1].compare("DIV")) {
+		return 6;
+	}
+	else if (!matriz[indice][1].compare("LD")) {
+		return 7;
+	}
+	else if (!matriz[indice][1].compare("LDA")) {
+		return 8;
+	}
+	else if (!matriz[indice][1].compare("LDC")) {
+		return 9;
+	}
+	else if (!matriz[indice][1].compare("ST")) {
+		return 10;
+	}
+	else if (!matriz[indice][1].compare("JLT")) {
+		return 11;
+	}
+	else if (!matriz[indice][1].compare("JLE")) {
+		return 12;
+	}
+	else if (!matriz[indice][1].compare("JGE")) {
+		return 13;
+	}
+	else if (!matriz[indice][1].compare("JGT")) {
+		return 14;
+	}
+	else if (!matriz[indice][1].compare("JEQ")) {
+		return 15;
+	}
+	else if (!matriz[indice][1].compare("JNE")) {
+		return 16;
 	}
 }
