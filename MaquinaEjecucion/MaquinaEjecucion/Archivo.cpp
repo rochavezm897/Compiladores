@@ -47,7 +47,6 @@ void Archivo::LeerArchivo(string archivo) {
 		}
 		temporal= "";
 	}
-	rop = instrucciones[0].at(0);
 	infile.close();
 }
 

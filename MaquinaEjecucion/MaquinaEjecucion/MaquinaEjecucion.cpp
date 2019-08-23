@@ -8,7 +8,7 @@ void main()
 	Ejecucion ejecucion;
 	//Leer archivo
 	//Archivo debe estar en la misma direccion que MaquinaEjecucion.cpp
-	ejecucion.archivo.LeerArchivo("Prueba.txt");
+	ejecucion.archivo.LeerArchivo("Ejemplo5.me");
 	ejecucion.archivo.guardarmatriz();
 
 	// variable menu
@@ -28,7 +28,6 @@ void main()
 		switch (opcion) {
 			case 1: {
 				ejecucion.archivo.ImprimirArchivo();
-				cout << int(ejecucion.archivo.rop) << endl;
 				//cout << ejecucion.archivo.matriz[0][0]<< ejecucion.archivo.matriz[0][1] << ejecucion.archivo.matriz[0][2] << ejecucion.archivo.matriz[0][3] << ejecucion.archivo.matriz[0][4]<<endl;
 				//cout << "Instruccion 2: " << ejecucion.archivo.instrucciones[1] << endl;
 				break;

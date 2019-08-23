@@ -17,8 +17,7 @@ struct MatrizCodigo
 class Archivo
 {
 public:
-	string instrucciones[300];
-	char rop = 0;
+	string instrucciones[INSTRUCCIONES_MAXIMO];
 	string matriz[INSTRUCCIONES_MAXIMO][5];
 	int contadorInstrucciones;
 	int siguienteInstruccion;
