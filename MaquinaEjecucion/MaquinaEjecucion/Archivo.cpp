@@ -67,6 +67,7 @@ void Archivo::guardarmatriz()
 	string tmp2;
 	char x;
 	bool band;
+	bool band1;
 	for (int i = 0; i < INSTRUCCIONES_MAXIMO; i++)
 	{
 		contador = 0;
@@ -75,6 +76,7 @@ void Archivo::guardarmatriz()
 		tmp1 = "";
 		tmp2 = "";
 		band = 0;
+		band1 = 0;
 		tamanostring = instrucciones[i].length();
 		if (instrucciones[i].empty())
 		{
@@ -91,13 +93,14 @@ void Archivo::guardarmatriz()
 			}
 			else 
 			{
-				if (64<int(x) && int(x)<91)
+				if (64<int(x) && int(x)<91 && !band1)
 				{
 					tmp += x;
 					band = 1;
 				}
 				if ((47 < int(x) && int(x)<58 && band) || (int(x) == 44 || int(x) == 40) || int(x) == 45)
 				{
+					band1 = 1;
 					if (int(x) == 44 || int(x) == 40)
 					{
 						contador1 += 1;
