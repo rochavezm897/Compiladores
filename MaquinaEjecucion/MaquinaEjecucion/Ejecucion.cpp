@@ -16,7 +16,7 @@ void Ejecucion::EjecutarInstruccion() {
 	case 1: {
 		cout << "Ingresar valor: ";
 		cin >> reg[archivo.matrizCodificada[reg[7]].p1];
-		cout << "Guardado";
+		cout << "Guardado"<< endl;
 	}
 	}
 	reg[7]++;
