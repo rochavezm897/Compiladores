@@ -8,7 +8,7 @@ int main()
 	Ejecucion ejecucion;
 	//Leer archivo
 	//Archivo debe estar en la misma direccion que MaquinaEjecucion.cpp
-	ejecucion.archivo.LeerArchivo("prueba.txt");
+	ejecucion.archivo.LeerArchivo("ejemplo5.me");
 	ejecucion.archivo.guardarmatriz();
 
 	// variable menu
