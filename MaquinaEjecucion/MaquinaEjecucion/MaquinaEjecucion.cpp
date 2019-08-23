@@ -3,12 +3,13 @@
 #include "Ejecucion.h"
 using namespace std;
 
-int main()
+void main()
 {
 	Ejecucion ejecucion;
 	//Leer archivo
 	//Archivo debe estar en la misma direccion que MaquinaEjecucion.cpp
-	ejecucion.archivo.LeerArchivo("prueba.txt");
+	ejecucion.archivo.LeerArchivo("Ejemplo5.me");
+	ejecucion.archivo.guardarmatriz();
 
 	// variable menu
 	int opcion;
@@ -20,12 +21,15 @@ int main()
 		cout << "5.- Imprimir Instruccion" << endl;
 		cout << "6.- Trace" << endl;
 		cout << "7.- Reiniciar" << endl;
-		cout << "8.- Salir" << endl;
+		cout << "8.- Imprimir Matriz" << endl;
+		cout << "9.- Salir" << endl;
 		cout << "Ingrese opcion: ";
 		cin >> opcion;
 		switch (opcion) {
 			case 1: {
 				ejecucion.archivo.ImprimirArchivo();
+				//cout << ejecucion.archivo.matriz[0][0]<< ejecucion.archivo.matriz[0][1] << ejecucion.archivo.matriz[0][2] << ejecucion.archivo.matriz[0][3] << ejecucion.archivo.matriz[0][4]<<endl;
+				//cout << "Instruccion 2: " << ejecucion.archivo.instrucciones[1] << endl;
 				break;
 			}
 			case 2: {
@@ -41,7 +45,7 @@ int main()
 				break;
 			}
 			case 5: {
-				ejecucion.archivo.ImprimirInstruccion(ejecucion.lineaEjecutando);
+				ejecucion.archivo.ImprimirInstruccion(ejecucion.reg[7]);
 				break;
 			}
 			case 6: {
@@ -57,6 +61,10 @@ int main()
 				ejecucion.Reset();
 				break;
 			}
+			case 8: {
+				ejecucion.archivo.ImprimirMatriz();
+				break;
+			}
 		}
-	} while (opcion != 8);
+	} while (opcion != 9);
 }
