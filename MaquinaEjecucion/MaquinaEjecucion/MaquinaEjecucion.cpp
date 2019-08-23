@@ -3,12 +3,12 @@
 #include "Ejecucion.h"
 using namespace std;
 
-int main()
+void main()
 {
 	Ejecucion ejecucion;
 	//Leer archivo
 	//Archivo debe estar en la misma direccion que MaquinaEjecucion.cpp
-	ejecucion.archivo.LeerArchivo("prueba.txt");
+	ejecucion.archivo.LeerArchivo("Ejemplo3.me");
 	ejecucion.archivo.guardarmatriz();
 
 	// variable menu
