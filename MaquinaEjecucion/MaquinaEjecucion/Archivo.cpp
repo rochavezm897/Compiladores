@@ -61,6 +61,7 @@ void Archivo::guardarmatriz()
 {
 	int contador;
 	int contador1;
+	int tamanostring;
 	string tmp;
 	string tmp1;
 	string tmp2;
@@ -74,12 +75,14 @@ void Archivo::guardarmatriz()
 		tmp1 = "";
 		tmp2 = "";
 		band = 0;
+		tamanostring = instrucciones[i].length();
 		if (instrucciones[i].empty())
 		{
 			break;
 		}
-		while (true)
+		while (tamanostring!=0)
 		{
+			tamanostring--;
 			x = instrucciones[i].at(contador);
 			if (47<int(x) && int(x)<58 && !band)
 			{
@@ -111,11 +114,6 @@ void Archivo::guardarmatriz()
 							break;
 						case 2:
 							matriz[i][4] += x;
-							x = instrucciones[i].at(contador + 1);
-							if (int(x) == 32 || int(x)==41)
-							{
-								contador1 = 100;
-							}
 							break;
 						default:
 							break;
@@ -123,10 +121,6 @@ void Archivo::guardarmatriz()
 					}
 
 				}
-			}
-			if (contador1==100)
-			{
-				break;
 			}
 			contador++;
 		}
