@@ -25,6 +25,7 @@ void main()
 		cout << "9.- Salir" << endl;
 		cout << "Ingrese opcion: ";
 		cin >> opcion;
+
 		switch (opcion) {
 			case 1: {
 				ejecucion.archivo.ImprimirArchivo();
