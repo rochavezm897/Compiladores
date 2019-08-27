@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
 const int MAX_ESTADOS = 20;
@@ -15,6 +16,7 @@ public:
 	char matriz[MAX_ESTADOS][MAX_ESTADOS];
 	Grafo();
 	bool VerificarCadena(string cadena);
+	bool cargarArchivo(std::ifstream fs);
 	int IndiceEstado(string estado);
 	string NombreIndice(int indice);
 	bool VerificarFinal();

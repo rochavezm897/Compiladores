@@ -13,6 +13,13 @@ Grafo::Grafo() {
 	}
 }
 
+bool Grafo::cargarArchivo(std::ifstream fs) {
+	ifs.seekg(0, std::ios::end);
+	std::streamsize f_size = ifs.tellg();
+	ifs.seekg(0, std::ios::beg);
+
+}
+
 bool Grafo::VerificarCadena(string cadena) {
 	estadoActual = IndiceEstado(estadoInicio);
 	for (int i = 0; i < cadena.length(); i++) {
