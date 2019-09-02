@@ -8,11 +8,13 @@ Archivo::Archivo() {
 	siguienteInstruccion = 0;
 }
 
+
 void Archivo::ImprimirArchivo() {
 	for (int i = 0; i < contadorInstrucciones; i++) {
 		cout << instrucciones[i] << endl;
 	}
 }
+
 
 void Archivo::LeerArchivo(string archivo) {
 	infile.open(archivo);
@@ -50,10 +52,10 @@ void Archivo::LeerArchivo(string archivo) {
 	infile.close();
 }
 
+
 void Archivo::ImprimirInstruccion(int indice) {
 	cout << instrucciones[indice] << endl;
 }
-
 
 
 void Archivo::guardarmatriz()
@@ -133,6 +135,7 @@ void Archivo::guardarmatriz()
 	CodificarMatriz();
 }
 
+
 void Archivo::ImprimirMatriz() {
 	for (int i = 0; i < contadorInstrucciones; i++) {
 		cout << matrizCodificada[i].linea << " " <<
@@ -145,6 +148,7 @@ void Archivo::ImprimirMatriz() {
 	}
 }
 
+
 void Archivo::CodificarMatriz() {
 	
 	for (int i = 0; i < contadorInstrucciones; i++) {
@@ -156,6 +160,7 @@ void Archivo::CodificarMatriz() {
 		matrizCodificada[i].p3 = stoi(matriz[i][4]);
 	}
 }
+
 
 int Archivo::ObtenerCodigo(int indice) {
 	if (!matriz[indice][1].compare("HALT")) {

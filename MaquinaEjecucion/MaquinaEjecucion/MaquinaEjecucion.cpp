@@ -22,9 +22,11 @@ void main()
 		cout << "6.- Trace" << endl;
 		cout << "7.- Reiniciar" << endl;
 		cout << "8.- Imprimir Matriz" << endl;
-		cout << "9.- Salir" << endl;
+		cout << "9.- Ver Datos Memoria" << endl;
+		cout << "10.- Salir" << endl;
 		cout << "Ingrese opcion: ";
 		cin >> opcion;
+
 		switch (opcion) {
 			case 1: {
 				ejecucion.archivo.ImprimirArchivo();
@@ -65,6 +67,10 @@ void main()
 				ejecucion.archivo.ImprimirMatriz();
 				break;
 			}
+			case 9: {
+				ejecucion.VerMemoria();
+				break;
+			}
 		}
-	} while (opcion != 9);
+	} while (opcion != 10);
 }
