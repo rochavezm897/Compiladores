@@ -1,2 +1,11 @@
-1 ADD 0,0,0
-2 DIF 1,2,3
+*ASDFASDF
+ 1:    IN  3,-22(7) 
+ 2:     LD  0,1(5)  ASDFGASDFASDF
+*ASDFASD
+
+
+ 3:    OUT  0,0,0 
+ 4:    JEQ  0,27(7) 
+ 5:    LDA  7,0(7) 
+ 6:   HALT  0,0,0 
+*CASDF
