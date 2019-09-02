@@ -16,5 +16,6 @@ class Ejecucion
 		void Reset();
 		void ImprimirRegistros();
 		void EjecutarCompleto();
+		void VerMemoria();
 };
 

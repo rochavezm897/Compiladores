@@ -52,11 +52,11 @@ void Ejecucion::EjecutarInstruccion() {
 	
 	//Instrucciones Tipo Memoria 7-16
 	
-		if (a>6)
+		/*if (a>6)
 		{
 			cout << "Error: No esta en los limites" << endl;
 		}
-		else {
+		else {*/
 			case 7: {//LD 
 				if (a < 0 || a>50)
 				{
@@ -68,7 +68,11 @@ void Ejecucion::EjecutarInstruccion() {
 				}
 			}
 			case 8: {//LDA 
-				reg[archivo.matrizCodificada[reg[7]].p1] = a;
+				int aux = a;
+				if (archivo.matrizCodificada[reg[7]].p1 == 7) {
+					aux = aux - 1;
+				}
+				reg[archivo.matrizCodificada[reg[7]].p1] = aux;
 				break;
 			}
 			case 9: {//LDC
@@ -123,7 +127,7 @@ void Ejecucion::EjecutarInstruccion() {
 				break;
 			}
 			case 15: {//JEQ
-				if (reg[archivo.matrizCodificada[reg[7]].p1] = 0) {
+				if (reg[archivo.matrizCodificada[reg[7]].p1] == 0) {
 					reg[7] = a - 1;
 				}
 				else {
@@ -140,7 +144,7 @@ void Ejecucion::EjecutarInstruccion() {
 				}
 				break;
 			}
-		}
+		//}
 
 	}
 	reg[7]++;
@@ -159,7 +163,16 @@ void  Ejecucion::ImprimirRegistros() {
 }
 
 void Ejecucion::EjecutarCompleto() {
-	for (int i = 0; i < archivo.contadorInstrucciones; i++) {
+	/*for (int i = 0; i < archivo.contadorInstrucciones; i++) {
 		EjecutarInstruccion();
+	}*/
+	while (reg[7] < archivo.contadorInstrucciones) {
+		EjecutarInstruccion();
+	}
+}
+
+void Ejecucion::VerMemoria() {
+	for (int i = 0; i < DATOS_MAXIMO; i= i+5) {
+		cout << datos_Memoria[i] << " " << datos_Memoria[i + 1] << " " << datos_Memoria[i + 2] << " " << datos_Memoria[i + 3] << " " << datos_Memoria[i + 4] << endl;
 	}
 }
