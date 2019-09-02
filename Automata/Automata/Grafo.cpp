@@ -1,88 +1,166 @@
 #include "Grafo.h"
 
 Grafo::Grafo() {
-	estadoInicio = "";
-	contadorEstados = 0;
-	contadorEstadosFin = 0;
-	for (int i = 0; i < MAX_ESTADOS; i++) {
-		estados[i] = -1;
-		estadosFin[i] = -1;
-		for (int j = 0; j < MAX_ESTADOS; j++) {
-			matriz[i][j] = -1;
+	int i, j;
+	for (i = 0; i < MAX_ESTADOS; i++)
+	{
+		for (j = 0; j < MAX_ESTADOS; j++)
+		{
+			matrizTransicion[i][j] = -1;
 		}
 	}
 }
 
-bool Grafo::cargarArchivo(std::ifstream fs) {
-	ifs.seekg(0, std::ios::end);
-	std::streamsize f_size = ifs.tellg();
-	ifs.seekg(0, std::ios::beg);
+bool Grafo::cargarArchivo(string ubicacionFichero) {
+	//ABRIMOS EL ARCHIVO
+	fichero.open(ubicacionFichero);
+	//VARIABLES TEMPORALES Y CONTROL
+	int indiceClaves[5];
+	string arrClaves[5] = { "K", "VT", "S", "Z", "M" };
+	string temp[300];
+	objTransiciones tempMatriz;
 
+	bool nada;
+
+	//Variables contadoras
+	bool llenarArreglo = false;
+	int contadorClaves = 0;
+	int contadorIndice = 0;
+	int i = 0;
+	int lenFichero = 0;
+
+	//LLENAMOS TEMP CON TODO LO QUE ESTE SEPARADO POR ESPACIOS
+	try
+	{
+		do {
+			fichero >> temp[lenFichero];
+			if (temp[lenFichero] == "")
+				break;
+			lenFichero++;
+		}while (fichero);
+
+		//CERRAMOS EL ARCHIVO
+		fichero.close();
+
+		//CONTAMOS PARA ENCONTRAR LA UBICACI[ON DE LAS CLAVES EN EL ARCHIVO
+		while (i < lenFichero) {
+			if (temp[i] == arrClaves[contadorIndice])
+			{
+				indiceClaves[contadorIndice] = i;
+				contadorIndice++;
+			}
+			i++;
+		}
+
+		i = 0;
+		contadorIndice = 0;
+
+		//LLENAMOS CADA CLAVE CON SUS ELEMENTOS
+		do {
+
+			if (indiceClaves[0] < i && i < indiceClaves[1]) {
+				//LLENAMOS ESTADOS
+				Estados.push_back(temp[i]);
+			}
+			else if (indiceClaves[1] < i && i < indiceClaves[2]) {
+				//LLENAMOS VOCABULARIO
+				Vocabulario.push_back(temp[i][0]);
+			}
+			else if (indiceClaves[2] < i && i < indiceClaves[3]) {
+				//LLENAMOS ESTADO INICIAL
+				//SIEMPRE ASUMIMNOS QUE SOLO HAY UN ESTADO INICIAL
+				EstadoInicial = temp[i];
+			}
+			else if (indiceClaves[3] < i && i < indiceClaves[4]) {
+				//LLENAMOS ESTADO FINAL
+				EstadosFinal.push_back(temp[i]);
+			}
+			else if (indiceClaves[4] < i) {
+				//LLENAMOS TRANSICIONES
+				tempMatriz.origen = temp[i];
+				tempMatriz.destino = temp[i + 1];
+				tempMatriz.transicion = temp[i + 2];
+				Transiciones.push_back(tempMatriz);
+				i += 2;
+			}
+			i++;
+		} while (i < lenFichero);
+
+		contEstados = Estados.size();
+		contVocabulario = Vocabulario.size();
+		contEstadosFinales = EstadosFinal.size();
+		contTransiciones = Transiciones.size();
+
+		construirMatrizTrans();
+
+		return true;
+	}
+	catch (const std::exception&)
+	{
+		cout << "Error al cargar el archivo" << endl;
+		return false;
+	}
+	
+}
+
+bool Grafo::construirMatrizTrans() {
+	int i = 0;
+	int j = 0;
+
+	//Llenamos matriz de transicion
+	for (i = 0; i < contTransiciones; i++) {
+		matrizTransicion[getIndiceEstados(Transiciones[i].origen)][getIndiceEstados(Transiciones[i].destino)]
+			= getIndiceVocabulario(Transiciones[i].transicion[0]);
+	}
+
+	return true;
+}
+
+int Grafo::getIndiceEstados(string nombreEstado) {
+	for (int i = 0; i < contEstados; i++)
+	{
+		if (Estados[i] == nombreEstado)
+			return i;
+	}
+}
+
+
+int Grafo::getIndiceVocabulario(char nombreVocabulario) {
+	for (int i = 0; i < contVocabulario; i++)
+	{
+		if (Vocabulario[i] == nombreVocabulario)
+			return i;
+	}
 }
 
 bool Grafo::VerificarCadena(string cadena) {
-	estadoActual = IndiceEstado(estadoInicio);
+	estadoActual = getIndiceEstados(EstadoInicial);
 	for (int i = 0; i < cadena.length(); i++) {
-		estadoActual = buscarMatriz(cadena[i]);
+		estadoActual = buscarMatriz(getIndiceVocabulario(cadena[i]));
 		if (estadoActual == -1) {
 			return false;
 		}
 	}
+
 	if (VerificarFinal()) {
 		return true;
 	}
 	return false;
 }
-int Grafo::IndiceEstado(string estado) {
-	for (int i = 0; i < contadorEstados; i++) {
-		if (estados[i].compare(estado) == 0) {
-			return i;
-		}
-	}
-	return -1;
-}
-string Grafo::NombreIndice(int indice) {
-	return estados[indice];
-}
 
 bool Grafo::VerificarFinal() {
-	string temp = NombreIndice(estadoActual);
-	for (int i = 0; i < contadorEstadosFin; i++) {
-		if (estadosFin[i].compare(temp) == 0) {
+	for (int i = 0; i < contEstadosFinales; i++) {
+		if (EstadosFinal[i] == Estados[estadoActual])
 			return true;
-		}
 	}
 	return false;
 }
 
 int Grafo::buscarMatriz(char caracter) {
-	for (int i = 0; i < contadorEstados; i++) {
-		if (matriz[estadoActual][i] == caracter) {
+	for (int i = 0; i < contEstados; i++) {
+		if (matrizTransicion[estadoActual][i] == caracter) {
 			return i;
 		}
 	}
 	return -1;
-}
-
-void Grafo::valoresPrueba() {
-	contadorEstados = 5;
-	contadorEstadosFin = 3;
-	estadoInicio = "A";
-	estados[0] = "A";
-	estados[1] = "B";
-	estados[2] = "C";
-	estados[3] = "D";
-	estados[4] = "E";
-	estadosFin[0] = "B";
-	estadosFin[1] = "C";
-	estadosFin[2] = "E";
-	matriz[0][1] = '0';
-	matriz[1][2] = '1';
-	matriz[1][3] = '2';
-	matriz[2][2] = '1';
-	matriz[2][3] = '2';
-	matriz[3][4] = '3';
-	matriz[4][2] = '1';
-	matriz[4][3] = '2';
-
 }

@@ -1,15 +1,20 @@
 #include "Grafo.h"
 #include <iostream>
+#include <fstream>
+using namespace std;
 
 int main()
 {
 	Grafo grafo;
-	grafo.valoresPrueba();
-	if (grafo.VerificarCadena("0232312")) {
+	grafo.cargarArchivo("ingesta.txt");
+
+	if (grafo.VerificarCadena("abaac")) {
 		cout << "Aceptado" << endl;
 	}
 	else {
 		cout << "Rechazado" << endl;
 	}
 	system("pause");
+
+	return 0;
 }
