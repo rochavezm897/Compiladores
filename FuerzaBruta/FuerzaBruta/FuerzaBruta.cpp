@@ -15,6 +15,7 @@ FuerzaBruta::FuerzaBruta(string Reglas[], reglas Derivaciones[], unsigned int ca
 
 FuerzaBruta::FuerzaBruta() {
 	this->LHS = (reglas*)malloc(sizeof(reglas) * 5);
+	this->RHS = (string*)malloc(sizeof(string) * 10);
 
 	string tempR[10] = {
 		string("T#"),

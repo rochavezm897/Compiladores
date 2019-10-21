@@ -1,7 +1,8 @@
 #include "FuerzaBruta.h"
 
 void main() {
-	FuerzaBruta FB = new FuerzaBruta();
+	FuerzaBruta FB;
+	FB = new FuerzaBruta();
 	while (true)
 	{
 
